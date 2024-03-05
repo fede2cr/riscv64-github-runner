@@ -1,5 +1,10 @@
-FROM riscv64/ubuntu 
+FROM docker.io/riscv64/ubuntu 
 VOLUME /runner
+
+RUN groupadd runner && \
+    useradd -s /bin/bash -g runner -m -k /dev/null runner && \
+    usermod -a -G sudo runner && \
+    echo "runner ALL = NOPASSWD : ALL" >> /etc/sudoers
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
 libatomic1 \
@@ -20,4 +25,6 @@ rm node-v21.6.2-linux-riscv64.tar.xz
 
 ENV PATH=$PATH:/usr/local/node-v21.6.2-linux-riscv64/bin/
 
-#CMD ["/usr/local/runner/run.sh"]
+USER runner
+
+CMD ["/usr/local/runner/run.sh"]

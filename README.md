@@ -41,7 +41,51 @@ After you share this code with your favorite RISCV Lab, they will need to run a 
 
 ## Instructions for setting up runners, for a RISCV Lab
 
+If you are a RISCV Lab or you have some riscv64 hardware that is able to run docker or podman, you can follow these simple steps to have a runner working. You will have to repeat them for earch runner that you plan to configure which will be at least one for each new project and each project could have more than one runner so that they can run on different hardware by splitting CI tasks. So keeps this doc bookmarked, or use automation to run the steps.
 
+Please test docker/podman before running these steps. Look at the FAQ for more info.
+
+Run this on an empty directory:
+
+```
+wget -q 'https://github.com/ChristopherHX/github-act-runner/releases/download/v0.6.8/binary-linux-riscv64.tar.gz'
+tar xf binary-linux-riscv64.tar.gz
+
+```
+
+The results will look like the following screenshot:
+
+![act download and config](doc/imgs/act-download-and-config.png)
+
+Configure the runner. Use here the runner token that you got from the project that wishes to do runners in your lab:
+
+```
+./config.sh
+```
+The result will look like this:
+
+![runner token configuration](doc/imgs/runner-token-config.png)
+
+Now cleanup the binary tarfile:
+```
+rm binary-linux-riscv64.tar.gz
+```
+
+Start the runner manually for testing. This example uses podman on a terminal, but of course you can use [systemd](https://docs.docker.com/config/daemon/systemd/), Kubernetes or any method which is useful for your Lab.
+
+Here we use the Ubuntu container as an example. Ask the project which distro/container they preffer to run on.
+
+```
+podman run --userns keep-id -v $(pwd)/../runner/:/usr/local/runner fede2/github-runner-ubuntu:v0.1
+```
+
+If all went well, this is how the output should look like:
+
+![Runner inside docker ubuntu image](doc/imgs/lab-runner-test.png)
+
+On the side of the project, on GitHub, if they click on Settings, Actions, Runners again, it will look like this:
+
+![Runner active on GitHub](doc/imgs/project-runner-active.png)
 
 ## Distribution images
 
@@ -70,6 +114,14 @@ This is very easy as they are docker images, but it is not happening as the curr
 - Docker, podman, firecracker?
 
 This currently works on both docker and podman. We hope to test firecracker images very soon.
+
+- Does any riscv64 hardware work for running docker/podman GitHub runners?
+
+We recommend at least a 4-core+8G-ram hardware, for example boards like LicheePi4a, Mars, Starfive II, etc. If you have a 64-core MilkV Pioneer things will be easier as they can have up to 128G ram and this will allow large projects and languages that require lots of memory while compiling. You can also limit the count of cores or the ram available to the runners by changing docker/podman parameters.
+
+- Does any riscv64 distribution work for running docker/podman runners?
+
+Not at all. Most riscv64 "early" distributions provided by hardware vendors, are missing one or two simple modules that make it hard or impossible to run docker/podman containers on this type of hardware. A simple kernel recompile will do, but please contact your hardware vendor so that they can add the missing options to the next release of the distribution. The Fedora 38 that comes with the MilkV Pioneer works out of the box.
 
 - Are the base docker images built by each distribution?
 
