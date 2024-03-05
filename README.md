@@ -76,7 +76,7 @@ Start the runner manually for testing. This example uses podman on a terminal, b
 Here we use the Ubuntu container as an example. Ask the project which distro/container they preffer to run on.
 
 ```
-podman run --userns keep-id -v $(pwd)/../runner/:/usr/local/runner fede2/github-runner-ubuntu:v0.1
+podman run --userns keep-id -v $(pwd)/:/usr/local/runner fede2/github-runner-ubuntu:v0.1
 ```
 
 If all went well, this is how the output should look like:
