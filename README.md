@@ -21,16 +21,37 @@ In GitHub, go to your project, and on the top menu, click on Settings.
 
 ![GitHub top menu, click on Settings](doc/imgs/github-menu.png)
 
+Inside the Settings menu, look for Actions and inside of it for Runners.
+
+![Actions and Runners menu](doc/imgs/actions-runners-menu.png)
+
+Now click on the New self-hosted runner, green button.
+
+![New self-hosted runner, green button](doc/imgs/new-selfhosted-runner.png)
+
+Here, look for the runner token. This is a capitalized alpha-numeric code that you can see in this screenshot. Copy this text and send it to your RISCV Lab, as they will need this information to complete the configuration process on their side.
+
+**Please** note that you do not have to run this commands anywhere. This is what GitHub recommends to run their runner software, but since they don't support RISCV64 yet, it is being done with another piece of free software.
+
+![Runner token](doc/imgs/runner-token.png)
+
+After you share this code with your favorite RISCV Lab, they will need to run a couple of commands on their side, and will let you know when you can start using your runner.
+
+4. Send some code to GitHub to activate the runner and start testing your runner. Please be nice to your Lab and let them know if you do not need your runner so that they can clean up on their side, and leave the resources available for other projects.
+
 ## Instructions for setting up runners, for a RISCV Lab
+
+
 
 ## Distribution images
 
 This is the current list of distributions supported. Please take a look at the FAQ below if you require other distributions or packages to be added.
 
-|Distribution|Version|Docker Hub Link|Image short name|Source|
-|------------|-------|---------------|----------|------|
-|Ubuntu|22.04|[github-runner-ubuntu](https://hub.docker.com/r/fede2/github-runner-ubuntu)|fede2/github-runner-ubuntu|[ubuntu-runner/](ubuntu-runner/)|
-
+|Distribution|Version|Docker Hub Link|Image short name|Source|Status|
+|------------|-------|---------------|----------------|------|------|
+|Ubuntu|22.04|[github-runner-ubuntu](https://hub.docker.com/r/fede2/github-runner-ubuntu)|fede2/github-runner-ubuntu|[ubuntu-runner/](ubuntu-runner/)|Ready for use|
+|Fedora|39|[fedora-rv64](https://hub.docker/com/r/imbearchild/fedora-rv64)|imbearchild/fedora-rv64|[fedora-runner/](fedora-runner)|Testing|
+|Mariner|2|wip|fede2/mariner-riscv64|wip|Not ready|
 
 ## FAQ
 
@@ -49,3 +70,11 @@ This is very easy as they are docker images, but it is not happening as the curr
 - Docker, podman, firecracker?
 
 This currently works on both docker and podman. We hope to test firecracker images very soon.
+
+- Are the base docker images built by each distribution?
+
+No, RISCV64 is not supported officially as a main architecture by almost no distribution, so it will take time for them to release resources such as installer images and docker images. Talk to your distribution to make them know this will be useful to your project.
+
+- Aren't docker short names dangerous?
+
+Yes they are. They are only being used as short in this documentation. The Dockerfile for each image is using the "long" name which is recommended.
