@@ -95,7 +95,7 @@ This is the current list of distributions supported. Please take a look at the F
 |------------|-------|---------------|----------------|------|------|
 |Ubuntu|22.04|[github-runner-ubuntu](https://hub.docker.com/r/fede2/github-runner-ubuntu)|fede2/github-runner-ubuntu|[ubuntu-runner/](ubuntu-runner/)|Ready for use|
 |Fedora|39|[fedora-rv64](https://hub.docker/com/r/imbearchild/fedora-rv64)|imbearchild/fedora-rv64|[fedora-runner/](fedora-runner)|Testing|
-|Mariner|2|wip|fede2/mariner-riscv64|wip|Not ready|
+|Mariner|2|[github-runner-azurelinux](https://hub.docker.com/r/fede2/github-runner-azurelinux)|fede2/github-runner-azurelinux|[github-runner-azurelinux/](github-runner-azurelinux/)|Testing|
 
 ## FAQ
 
