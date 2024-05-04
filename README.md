@@ -1,19 +1,19 @@
 # riscv64-github-runner
-Docker recipe for a riscv64 GitHub local runner
+Docker recipe for riscv64 GitHub local runner
 
 GitHub has popularized using CI/CD within the platform with ease, and they provide VMs from different Linux distributions as well as Windows and MacOS, and even provide different architectures like x86-64 and arm64, so that software can be compiled and tested natively (without using cross compilers). This is of course quite beneficial for free software projects that want to both test, and release binary versions of their software.
 
-Yet, GitHub does not provide at the time with RISC-V 64 bit architecture VMs. What this project tries to do, is to share documentation, docker containers and recipes on how to use and run CI/CD pipelines with GitHub under several distributions.
+Yet, GitHub does not provide (at the time of this writing) RISC-V 64 bit architecture VMs. What this project tries to do, is to share documentation, docker containers and recipes on how to use and run CI/CD pipelines with GitHub under several distributions.
 
-If you are a RISC-V Lab and want to use this methods, please got a bit below in this document to find instructions on how to run a runner.
+If you are a RISC-V Lab and want to use this methods, please go a bit below in this document to find instructions on how to deploy a runner.
 
-If you are a software project that requires a GitHub local runner with a RISCV64 architecture, please follow this steps.
+If your interest is a software project that requires a GitHub local runner with a RISCV64 architecture, please follow this steps.
 
 ## Instructions for setting up a RISCV64 CI/CD pipeline with GitHub
 
-1. Contact a RISC V Lab. You can use the [Costa Rica RISCV Lab](https://github.com/fede2cr/CR-RISCV-Lab) (unofficial lab) or the first official lab which is [10x Enginners](https://riscv.org/risc-v-lab-partner/). Let them know what your project will be working on, how frequent will you run workloads, and how big are those workloads.
+1. Contact a RISC V Lab. You can use the [Costa Rica RISCV Lab](https://github.com/fede2cr/CR-RISCV-Lab) (unofficial lab) or the first official lab which is [10x Enginners](https://riscv.org/risc-v-lab-partner/). Let them know what your project is about, how frequent the workloads will run, and how big these are.
 
-2. Setup a GitHub CI/CD action like you can find in the [example](doc/CI-example.md) or follow the more complex example of projects that build [Python wheel packages](https://github.com/fede2cr/riscv64-python-whl) on RISCV64 or that build [KDE9](https://github.com/fede2cr/riscv64-kde9-compiler) on RISCV64.
+2. Setup a GitHub CI/CD action as in the [example](doc/CI-example.md) or follow a more complex example for projects that build [Python wheel packages](https://github.com/fede2cr/riscv64-python-whl) on RISCV64 or that build [KDE9](https://github.com/fede2cr/riscv64-kde9-compiler) on RISCV64.
 
 3. Create a key for your runner in GitHub. You may request multiple runner keys to your RISCV Lab by running this step multiple times. This should allow you to run on multiple hardware if your project is big enough to require it.
 
@@ -99,7 +99,7 @@ This is the current list of distributions supported. Please take a look at the F
 
 ## FAQ
 
-- I want to use a distribution but is not on this list, can you please provide docker images for that particular distribution?
+- I want to use a distribution but it is not on this list, can you please provide docker images for that particular distribution?
 
 Yes, please create an issue stating what distribution and what version do you need and we will work on it.
 
@@ -129,4 +129,4 @@ No, RISCV64 is not supported officially as a main architecture by almost no dist
 
 - Aren't docker short names dangerous?
 
-Yes they are. They are only being used as short in this documentation. The Dockerfile for each image is using the "long" name which is recommended.
+Yes they are. They are only being used as short in this documentation. The Dockerfile for each image is using the "long"/SHA name which is recommended.
